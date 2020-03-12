@@ -7,9 +7,9 @@ public class User {
     private int userID;
     private String name;
     private String surname;
-    List<String> flights= new ArrayList();
+    List<Flight> flights= new ArrayList();
 
-    public User(int ID, String name, String surname, List<String> flights) {
+    public User(int ID, String name, String surname, List<Flight> flights) {
         this.userID = userID;
         this.name = name;
         this.surname = surname;
