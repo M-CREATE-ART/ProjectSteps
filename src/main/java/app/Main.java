@@ -3,7 +3,7 @@ package app;
 import Controller.Controller;
 import DAOFull.BookingDAO;
 import IO.ConsoleMain;
-import Service.Service;
+import service.Service;
 
 public class Main {
     public static void main(String[] args) {

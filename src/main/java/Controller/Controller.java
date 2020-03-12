@@ -1,7 +1,7 @@
 package Controller;
 
 import IO.Console;
-import Service.Service;
+import service.Service;
 
 public class Controller {
     Service service;
