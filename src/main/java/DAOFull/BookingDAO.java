@@ -2,12 +2,16 @@ package DAOFull;
 
 import entity.Booking;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
 
 public class BookingDAO implements DAO<Booking> {
+
+    ArrayList<Booking> bookings = new ArrayList<>();
 
     public BookingDAO() {
         super();
@@ -15,12 +19,14 @@ public class BookingDAO implements DAO<Booking> {
 
     @Override
     public Collection<Booking> getAll() {
-        return null;
+        return bookings;
     }
 
     @Override
     public Optional<Booking> get(int ID) {
-        return Optional.empty();
+
+        return bookings.stream().filter(bk -> ID == bk.getBookingID()).findFirst();
+
     }
 
     @Override

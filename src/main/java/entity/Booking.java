@@ -17,4 +17,20 @@ public class Booking {
         this.user = user;
 
     }
+
+    public int getBookingID() {
+        return bookingID;
+    }
+
+    public List<Person> getPersons() {
+        return persons;
+    }
+
+    public Flight getFlight() {
+        return flight;
+    }
+
+    public User getUser() {
+        return user;
+    }
 }

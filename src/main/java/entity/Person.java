@@ -10,5 +10,17 @@ public class Person {
         this.name = name;
         this.surname = surname;
     }
+
+    public int getPersonID() {
+        return personID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
 }
 

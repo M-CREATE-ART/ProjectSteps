@@ -15,4 +15,20 @@ public class User {
         this.surname = surname;
         this.flights = flights;
     }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public List<Flight> getFlights() {
+        return flights;
+    }
 }
