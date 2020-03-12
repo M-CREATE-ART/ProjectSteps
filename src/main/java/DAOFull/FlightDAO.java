@@ -8,10 +8,10 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-public class FlightsDAO implements DAO<Flight> {
+public class FlightDAO implements DAO<Flight> {
     ArrayList<Flight> flights = new ArrayList<>();
 
-    public FlightsDAO() {
+    public FlightDAO() {
         super();
     }
 
@@ -23,7 +23,7 @@ public class FlightsDAO implements DAO<Flight> {
     @Override
     public Optional<Flight> get(int ID) {
 
-        return flights.stream().filter(fk -> ID == fk.getFlightID()).findFirst();
+        return flights.stream().filter(flights -> ID == flights.getFlightID()).findFirst();
     }
 
     @Override

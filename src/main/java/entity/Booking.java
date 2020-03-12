@@ -33,4 +33,7 @@ public class Booking {
     public User getUser() {
         return user;
     }
+
+    public int represent() {
+    }
 }
