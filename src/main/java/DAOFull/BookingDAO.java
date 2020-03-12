@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 public class BookingDAO implements DAO<Booking> {
 private File file;
     ArrayList<Booking> bookings = new ArrayList<>();
+    private Object Booking;
 
     public BookingDAO() {
         super();
@@ -41,8 +42,13 @@ private File file;
     @Override
     public void creat(Booking data) {
         Collection<Booking> bookings = getAll();
-        bookings.add(Booking);
+        bookings.add((entity.Booking) Booking);
         write(bookings);
+    }
+
+    @Override
+    public void delete(int ID) {
+
     }
 
     private void write(Collection<Booking> bookings) {
@@ -59,10 +65,6 @@ private File file;
     }
 
 
-}
 
-    @Override
-    public void delete(int ID) {
 
-    }
-}
+

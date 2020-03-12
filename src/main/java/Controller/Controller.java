@@ -21,7 +21,7 @@ public class Controller {
     }
 
     public void book() {
-        console.printLn("");
+        console.printLn(" ");
     }
 
 }

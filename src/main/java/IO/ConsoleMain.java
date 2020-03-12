@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class ConsoleMain implements Console {
     private Scanner sc = new Scanner(System.in);
+
+
     @Override
     public void print(String line) {
 
