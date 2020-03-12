@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 
 public class BookingDAO implements DAO<Booking> {
-private File file;
+private File booking;
     ArrayList<Booking> bookings = new ArrayList<>();
     private Object Booking;
 
@@ -53,7 +53,7 @@ private File file;
 
     private void write(Collection<Booking> bookings) {
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(booking))) {
             for (Booking b: bookings) {
                 bw.write(b.represent());
                 bw.write("\n");

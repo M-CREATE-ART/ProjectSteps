@@ -34,6 +34,8 @@ public class Booking {
         return user;
     }
 
-    public int represent() {
+    public String represent() {
+        return null;
     }
+
 }
