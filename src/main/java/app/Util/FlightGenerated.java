@@ -19,7 +19,7 @@ public class FlightGenerated {
         int seats = 10;
         for (int i = 0; i < count; i++) {
             int randomDestiIdx = random.nextInt(randomDesti.size());
-            int randonDate = random.nextInt(5);
+            int randonDate = random.nextInt(10);
             AirWays randomDest = randomDesti.get(randomDestiIdx);
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
             LocalDateTime localDateTime = LocalDateTime.now();
@@ -28,7 +28,7 @@ public class FlightGenerated {
             String formattedFlightDate = flightDateTime.format(dateTimeFormatter);
 
 
-            FlightGenerated.add(new Flight(i + 1, 5, 5, 3));
+            flightGenerator.add(new Flight(i + 1, 5, AirWays.KYIV, 3));
 
            //return flightGenerator;
 
@@ -39,6 +39,12 @@ public class FlightGenerated {
         return flightGenerator;
     }
    private static void add(Flight flight) {
+
     }
+
+    public static void main(String[] args) {
+        System.out.println(flightGenerator(3));
+    }
+
 
 }
