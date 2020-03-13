@@ -37,7 +37,7 @@ public class Flight<formattedLocalDateTime> {
     public String toString() {
         return "Flight{" +
                 "flightID=" + flightID +
-                ", countSeats=" + countSeats +
+                ". countSeats=" + countSeats +
                 ", reservedSeats=" + reservedSeats +
                 ", destination=" + destination +
                 ", times=" + times +

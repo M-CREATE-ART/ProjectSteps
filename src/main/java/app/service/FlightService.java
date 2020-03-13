@@ -8,6 +8,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,6 +54,13 @@ public class FlightService {
         }
 
 return fileName;
+    }
+    public void fileToList() {
+        String fileName = "flight.txt";
+        String[] splitArr = fileName.split(",");
+        List<String> theList = new ArrayList<String>(Arrays.asList(splitArr));
+
+        System.out.println(theList);
     }
 }
 
