@@ -7,9 +7,7 @@ import app.entity.Flight;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class FlightService {
@@ -55,12 +53,22 @@ public class FlightService {
 
 return fileName;
     }
-    public void fileToList() {
-        String fileName = "flight.txt";
-        String[] splitArr = fileName.split(",");
-        List<String> theList = new ArrayList<String>(Arrays.asList(splitArr));
-
-        System.out.println(theList);
+    private static Map<String, List<String>> convert(List<String> list) {
+        HashMap<String, List<String>> data = new HashMap<>();
+        for (String line: list) {
+            String[] splitted = line.split(":");
+            // Noel : wrote, chased, slept on
+            // splitted[0] = `Noel `
+            // splitted[1] = ` wrote, chased, slept on`
+            String[] splited2 = splitted[1].split(",");
+            // [0] = ` wrote` [1] = ` chased` [2] = ` slept on`
+            data.put(
+                    splitted[0].trim(),
+                    Arrays.stream(splited2).map(s -> s.trim()).collect(Collectors.toList())
+                    // [0] = `wrote` [1] = `chased` [2] = `slept on`
+            );
+        }
+        return data;
     }
 }
 
