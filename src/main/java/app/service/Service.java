@@ -1,6 +1,6 @@
-package service;
+package app.service;
 
-import DAOFull.BookingDAO;
+import app.DAOFull.BookingDAO;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,6 +10,7 @@ import java.io.IOException;
 public class Service {
 
     BookingDAO daoBooking;
+
     public Service(BookingDAO daoBooking) {
         this.daoBooking = daoBooking;
     }
@@ -21,7 +22,7 @@ public class Service {
 
         BufferedReader br = new BufferedReader(fr);
         String line;
-        while((line = br.readLine()) != null){
+        while ((line = br.readLine()) != null) {
             //process the line
             System.out.println(line);
         }

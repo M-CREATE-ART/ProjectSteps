@@ -1,6 +1,6 @@
-package DAOFull;
+package app.DAOFull;
 
-import entity.Booking;
+import app.entity.Booking;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -42,7 +42,7 @@ private File booking;
     @Override
     public void creat(Booking data) {
         Collection<Booking> bookings = getAll();
-        bookings.add((entity.Booking) Booking);
+        bookings.add((app.entity.Booking) Booking);
         write(bookings);
     }
 

@@ -1,7 +1,6 @@
-package DAOFull;
+package app.DAOFull;
 
-import entity.Booking;
-import entity.Flight;
+import app.entity.Flight;
 
 import java.util.ArrayList;
 import java.util.Collection;

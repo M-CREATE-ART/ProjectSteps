@@ -1,4 +1,4 @@
-package entity;
+package app.entity;
 
 public enum AirWays {
     KYIV ("KYV"),

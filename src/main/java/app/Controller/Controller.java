@@ -1,7 +1,7 @@
-package Controller;
+package app.Controller;
 
-import IO.Console;
-import service.Service;
+import app.IO.Console;
+import app.service.Service;
 
 import java.io.IOException;
 

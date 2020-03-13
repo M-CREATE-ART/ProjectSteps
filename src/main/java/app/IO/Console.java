@@ -1,4 +1,4 @@
-package IO;
+package app.IO;
 
 public interface Console {
 

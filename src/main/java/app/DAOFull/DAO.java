@@ -1,4 +1,4 @@
-package DAOFull;
+package app.DAOFull;
 
 import java.util.Collection;
 import java.util.Optional;

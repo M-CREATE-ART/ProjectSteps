@@ -1,9 +1,9 @@
 package app;
 
-import Controller.Controller;
-import DAOFull.BookingDAO;
-import IO.ConsoleMain;
-import service.Service;
+import app.Controller.Controller;
+import app.DAOFull.BookingDAO;
+import app.IO.ConsoleMain;
+import app.service.Service;
 
 import java.io.IOException;
 
