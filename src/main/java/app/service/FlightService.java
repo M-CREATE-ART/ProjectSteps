@@ -36,15 +36,17 @@ public class FlightService {
             try {
                 BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
                   flightDao.getAll().addAll(FlightGenerated.flightGenerator(5));
-                for (Flight flight : FlightDAO.getAll()) {
-                    bw.write(Flight.toString());
+                for (Flight flight : flightDao.getAll()) {
+                    bw.write(flight.toString());
                     bw.write("\n");
                 }
                 bw.close();
 
 
-            } finally {
+            }
+            catch (IOException ex1){
 
+                System.out.println("Something wont wrong!");
             }
 
         }
