@@ -15,6 +15,11 @@ public class Service {
         this.daoBooking = daoBooking;
     }
 
+    public Service() {
+
+    }
+
+
     public void getallFlights() throws IOException {
         String fileName = "flight.txt";
         File file = new File(fileName);

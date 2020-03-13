@@ -8,13 +8,12 @@ public class Flight<formattedLocalDateTime> {
     String times;
 
 
-
     public Flight(int flightID, int countSeats, AirWays destination, int reservedSeats, String times) {
         this.flightID = flightID;
         this.countSeats = countSeats;
         this.destination = destination;
         this.reservedSeats = reservedSeats;
-        this.times= times;
+        this.times = times;
 
     }
 
@@ -35,7 +34,7 @@ public class Flight<formattedLocalDateTime> {
     }
 
     @Override
-    public  String toString() {
+    public String toString() {
         return "Flight{" +
                 "flightID=" + flightID +
                 ", countSeats=" + countSeats +

@@ -13,9 +13,10 @@ import java.util.stream.Collectors;
 
 public class FlightService {
 
+
     FlightDAO flightDao = new FlightDAO();
 
-    public void generating() throws IOException {
+    public String generating()  {
         FlightGenerated flightsGenerated = new FlightGenerated();
         String fileName = "flight.txt";
         List<String> list = new ArrayList<>();
@@ -25,7 +26,7 @@ public class FlightService {
             if (list.size() == 0) {
                 FileWriter writer = new FileWriter(fileName);
 
-                for (Flight str : flightsGenerated.flightGenerator(5)) {
+                for (Flight str : flightsGenerated.flightGenerator(10)) {
                     writer.write(str + System.lineSeparator());
                 }
                 writer.close();
@@ -51,7 +52,7 @@ public class FlightService {
 
         }
 
-
+return fileName;
     }
 }
 
