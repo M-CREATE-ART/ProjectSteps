@@ -10,6 +10,8 @@ import java.util.EnumSet;
 import java.util.Random;
 
 public class FlightGenerated {
+
+
     public static  ArrayList<Flight> flightGenerator(int count) {
         Random random = new Random();
         ArrayList<Flight> flightGenerated = new ArrayList<>();
