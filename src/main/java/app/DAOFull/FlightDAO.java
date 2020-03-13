@@ -8,14 +8,14 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 public class FlightDAO implements DAO<Flight> {
-    ArrayList<Flight> flights = new ArrayList<>();
+    public ArrayList<Flight> flights = new ArrayList<>();
 
     public FlightDAO() {
         super();
     }
 
     @Override
-    public Collection<Flight> getAll() {
+    public  Collection<Flight> getAll() {
         return flights;
     }
 

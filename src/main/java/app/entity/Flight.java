@@ -35,7 +35,7 @@ public class Flight<formattedLocalDateTime> {
     }
 
     @Override
-    public String toString() {
+    public  String toString() {
         return "Flight{" +
                 "flightID=" + flightID +
                 ", countSeats=" + countSeats +
