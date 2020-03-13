@@ -10,37 +10,35 @@ import java.util.EnumSet;
 import java.util.Random;
 
 public class FlightGenerated {
-    public static ArrayList<Flight> flightGenerator(int count) {
+    public static  ArrayList<Flight> flightGenerator(int count) {
         Random random = new Random();
         ArrayList<Flight> flightGenerator = new ArrayList<>();
 
-        ArrayList<AirWays> randomDesti= new ArrayList<>();
+        ArrayList<AirWays> randomDesti = new ArrayList<>();
         EnumSet.allOf(AirWays.class).forEach(air -> randomDesti.add(air));
         int seats = 10;
         for (int i = 0; i < count; i++) {
             int randomDestiIdx = random.nextInt(randomDesti.size());
-            int randonDate=random.nextInt(5);
-            AirWays randomDest= randomDest.get(randomDestiIdx);
-            DateTimeFormatter dateTimeFormatter= DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
-            LocalDateTime localDateTime= LocalDateTime.now();
-            LocalDateTime flightDateTime= LocalDateTime.plusDays(randonDate).plusHours(randonDate).plusMinutes(randonDate);
+            int randonDate = random.nextInt(5);
+            AirWays randomDest = randomDesti.get(randomDestiIdx);
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+            LocalDateTime localDateTime = LocalDateTime.now();
+            LocalDateTime flightDateTime = localDateTime.plusDays(randonDate).plusHours(randonDate).plusMinutes(randonDate);
 
-            String formattedFlightDate= flightDateTime.format(dateTimeFormatter);
-
-
-            FlightGenerated.add(new Flight(i+1, 5, 5, 3));
-
-            return FlightGenerated;
+            String formattedFlightDate = flightDateTime.format(dateTimeFormatter);
 
 
+            FlightGenerated.add(new Flight(i + 1, 5, 5, 3));
+
+           //return flightGenerator;
 
 
         }
 
 
+        return flightGenerator;
     }
-
-    private static void add(Flight flight) {
+   private static void add(Flight flight) {
     }
 
 }

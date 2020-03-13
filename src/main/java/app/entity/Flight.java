@@ -16,7 +16,7 @@ public class Flight<formattedLocalDateTime> {
         return formattedLocalDateTime;
     }
 
-    public Flight(int flightID, int countSeats, AirWays destination, int reservedSeats) {
+    public Flight(int flightID, int countSeats, int destination, int reservedSeats) {
         this.flightID = flightID;
         this.countSeats = countSeats;
         this.destination = destination;
