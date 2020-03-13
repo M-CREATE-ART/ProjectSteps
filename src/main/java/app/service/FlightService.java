@@ -1,10 +1,9 @@
 package app.service;
 
 import app.Util.FlightGenerated;
+import app.entity.Flight;
 
-import java.io.BufferedReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -12,9 +11,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class FlightService {
-    public static List<String> main(String[] args) {
 
-
+    public void generating() throws IOException {
         FlightGenerated flights = new FlightGenerated();
         String fileName = "flight.txt";
         List<String> list = new ArrayList<>();
@@ -22,21 +20,27 @@ public class FlightService {
             list = br.lines().collect(Collectors.toList());
             if (list.size() == 0) {
                 FileWriter writer = new FileWriter(fileName);
-                flights.flightGenerator
-                for (String str : arr) {
+
+                for (Flight str : flights.flightGenerator(5)) {
                     writer.write(str + System.lineSeparator());
                 }
                 writer.close();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+
+            FileOutputStream fn = new FileOutputStream("flight.txt");
+            fn.write(flights.flightGenerator(5).addAll(T));
+            fn.flush();
+            fn.close();
+
 
         }
 
-
-        return list;
     }
 
+    public static void main(String[] args) {
+        System.out.println();
+    }
 }
 
 
