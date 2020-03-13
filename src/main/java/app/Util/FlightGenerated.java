@@ -12,23 +12,23 @@ import java.util.Random;
 public class FlightGenerated {
     public static  ArrayList<Flight> flightGenerator(int count) {
         Random random = new Random();
-        ArrayList<Flight> flightGenerator = new ArrayList<>();
+        ArrayList<Flight> flightGenerated = new ArrayList<>();
 
-        ArrayList<AirWays> randomDesti = new ArrayList<>();
-        EnumSet.allOf(AirWays.class).forEach(air -> randomDesti.add(air));
-        int seats = 10;
+        ArrayList<AirWays> randomDesi = new ArrayList<>();
+        EnumSet.allOf(AirWays.class).forEach(air -> randomDesi.add(air));
+        int countSeats = 10;
         for (int i = 0; i < count; i++) {
-            int randomDestiIdx = random.nextInt(randomDesti.size());
+            int randomDestiIdx = random.nextInt(randomDesi.size());
             int randonDate = random.nextInt(10);
-            AirWays randomDest = randomDesti.get(randomDestiIdx);
+            AirWays randomDest = randomDesi.get(randomDestiIdx);
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
             LocalDateTime localDateTime = LocalDateTime.now();
             LocalDateTime flightDateTime = localDateTime.plusDays(randonDate).plusHours(randonDate).plusMinutes(randonDate);
 
             String formattedFlightDate = flightDateTime.format(dateTimeFormatter);
 
+            flightGenerated.add(new Flight(i + 1, 10, randomDest, i+1, formattedFlightDate));
 
-            flightGenerator.add(new Flight(i + 1, 5, AirWays.KYIV, 3));
 
            //return flightGenerator;
 
@@ -36,14 +36,12 @@ public class FlightGenerated {
         }
 
 
-        return flightGenerator;
+        return flightGenerated;
     }
-   private static void add(Flight flight) {
 
-    }
 
     public static void main(String[] args) {
-        System.out.println(flightGenerator(3));
+        System.out.println(flightGenerator(1));
     }
 
 
