@@ -5,8 +5,10 @@ import DAOFull.BookingDAO;
 import IO.ConsoleMain;
 import service.Service;
 
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ConsoleMain console = new ConsoleMain();
         BookingDAO daoBooking = new BookingDAO();
         Service service = new Service(daoBooking);

@@ -3,6 +3,8 @@ package Controller;
 import IO.Console;
 import service.Service;
 
+import java.io.IOException;
+
 public class Controller {
     Service service;
     Console console;
@@ -12,7 +14,7 @@ public class Controller {
         this.console = console;
     }
 
-    public void show() {
+    public void show() throws IOException {
         service.getallFlights();
     }
 

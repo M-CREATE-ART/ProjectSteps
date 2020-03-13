@@ -2,6 +2,11 @@ package service;
 
 import DAOFull.BookingDAO;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Service {
 
     BookingDAO daoBooking;
@@ -9,7 +14,17 @@ public class Service {
         this.daoBooking = daoBooking;
     }
 
-    public void getallFlights() {
+    public void getallFlights() throws IOException {
+        String fileName = "flight.txt";
+        File file = new File(fileName);
+        FileReader fr = new FileReader(file);
+
+        BufferedReader br = new BufferedReader(fr);
+        String line;
+        while((line = br.readLine()) != null){
+            //process the line
+            System.out.println(line);
+        }
 
     }
 
