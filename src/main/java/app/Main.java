@@ -18,14 +18,14 @@ public class Main {
         boolean w_loop = true;
         while (w_loop) {
 
-            System.out.println("Sechiminizi daxil edin: 1 Show:  2 Search: 3 Book: 4 Exit ");
+            System.out.println("Please enter your choice: 1 Show:  2 Search: 3 Book: 4 Exit ");
             String input = console.readLn();
             switch (input) {
                 case "1":
                     controller.show();
                     break;
                 case "2":
-                    System.out.println("Uchush id ni daxil edin");
+                    System.out.println("Enter your Flight ID");
                     String fligtID =console.readLn();
                     controller.search(fligtID);
                     break;

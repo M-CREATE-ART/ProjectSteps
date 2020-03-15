@@ -13,14 +13,13 @@ public class Controller {
     public static void main(String[] args) {
         FlightService flightservice=new FlightService();
         System.out.println(flightservice.generating());
+
     }
 
     public Controller(Console console, Service service) {
         this.service = service;
         this.console = console;
     }
-
-
 
     public void show() throws IOException {
         service.getallFlights();
@@ -31,7 +30,7 @@ public class Controller {
     }
 
     public void book() {
-        console.printLn(" ");
+        console.printLn("");
     }
 
 }
