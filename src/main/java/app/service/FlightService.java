@@ -41,31 +41,25 @@ public class FlightService {
                     bw.write("\n");
                 }
                 bw.close();
-
-
             }
             catch (IOException ex1){
-
                 System.out.println("Something wont wrong!");
             }
-
         }
 
 return fileName;
     }
+
     private static Map<String, List<String>> convert(List<String> list) {
+        String fileName = "flight.txt";
         HashMap<String, List<String>> data = new HashMap<>();
         for (String line: list) {
-            String[] splitted = line.split(":");
-            // Noel : wrote, chased, slept on
-            // splitted[0] = `Noel `
-            // splitted[1] = ` wrote, chased, slept on`
+            String[] splitted = line.split(".");
             String[] splited2 = splitted[1].split(",");
-            // [0] = ` wrote` [1] = ` chased` [2] = ` slept on`
+
             data.put(
                     splitted[0].trim(),
                     Arrays.stream(splited2).map(s -> s.trim()).collect(Collectors.toList())
-                    // [0] = `wrote` [1] = `chased` [2] = `slept on`
             );
         }
         return data;

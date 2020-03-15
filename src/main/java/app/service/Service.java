@@ -28,10 +28,20 @@ public class Service {
         BufferedReader br = new BufferedReader(fr);
         String line;
         while ((line = br.readLine()) != null) {
-            //process the line
             System.out.println(line);
         }
+    }
 
+    public void getSearchingFlight(String flightId) throws IOException{
+        String fileName = "flight.txt";
+        File file = new File(fileName);
+        FileReader fr = new FileReader(file);
+
+        BufferedReader br = new BufferedReader(fr);
+        String line;
+        while ((line = br.readLine()) != null) {
+            System.out.println(line);
+        }
     }
 
 }

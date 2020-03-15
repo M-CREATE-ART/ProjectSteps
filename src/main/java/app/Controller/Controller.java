@@ -26,8 +26,8 @@ public class Controller {
         service.getallFlights();
     }
 
-    public void search() {
-        console.readLn();
+    public void search(String flightId) throws IOException {
+        service.getSearchingFlight(flightId);
     }
 
     public void book() {
