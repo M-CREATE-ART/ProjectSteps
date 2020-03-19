@@ -13,6 +13,7 @@ public class Controller {
     public static void main(String[] args) {
         FlightService flightservice=new FlightService();
         System.out.println(flightservice.generating());
+
     }
 
     public Controller(Console console, Service service) {
@@ -20,19 +21,16 @@ public class Controller {
         this.console = console;
     }
 
-
-
     public void show() throws IOException {
         service.getallFlights();
     }
 
-    public void search(String flightDestination/*String flightId,String flightSit*/) throws IOException {
-        service.searchingFlight(flightDestination);
+    public void search(String flightId) throws IOException {
+        service.getSearchingFlight(flightId);
     }
 
-    public void book(String flightDestination1, String flightId,String flightSit ) {
-service.bookingFlight( flightDestination1, flightId, flightSit);
-       // console.printLn(" ");
+    public void book() {
+        console.printLn("");
     }
 
 }

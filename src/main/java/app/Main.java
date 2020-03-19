@@ -18,31 +18,24 @@ public class Main {
         boolean w_loop = true;
         while (w_loop) {
 
-            System.out.println("Select 1: 1 Show:  2 Search: 3 Book: 4 Exit ");
+            System.out.println("Please enter your choice: 1 Show:  2 Search: 3 Book: 4 Exit ");
             String input = console.readLn();
             switch (input) {
                 case "1":
                     controller.show();
                     break;
                 case "2":
-                    System.out.println("Insert flightId,flightDestination, flightSit");
-                   // String fligtID =console.readLn();
-                    String flightDestination =console.readLn();
-                 //   String flightSit =console.readLn();
-                    controller.search( flightDestination);
+                    System.out.println("Enter your Flight ID");
+                    String fligtID =console.readLn();
+                    controller.search(fligtID);
                     break;
                 case "3":
-                    System.out.println("Insert flightId,flightDestination, flightSit");
-                    String fligtID =console.readLn();
-                    String flightDestination1 =console.readLn();
-                      String flightSit =console.readLn();
-                    controller.book(fligtID,flightDestination1, flightSit);
+                    controller.book();
                    break;
                 case "4":
                     w_loop = false;
                     break;
                 default:
-                    System.out.println("Wrong select");
                     break;
             }
         }
