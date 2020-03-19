@@ -26,12 +26,13 @@ public class Controller {
         service.getallFlights();
     }
 
-    public void search(String flightId) throws IOException {
-        service.getSearchingFlight(flightId);
+    public void search(String flightDestination/*String flightId,String flightSit*/) throws IOException {
+        service.searchingFlight(flightDestination);
     }
 
-    public void book() {
-        console.printLn(" ");
+    public void book(String flightDestination1, String flightId,String flightSit ) {
+service.bookingFlight( flightDestination1, flightId, flightSit);
+       // console.printLn(" ");
     }
 
 }

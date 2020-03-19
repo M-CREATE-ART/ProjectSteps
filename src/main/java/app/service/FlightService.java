@@ -11,7 +11,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class FlightService {
+    public static void main(String[] args) throws FileNotFoundException {
+        List<String> flight = read("flight.txt");
+        Map<String, List<String>> flightList = convert(flight);
 
+    }
 
     FlightDAO flightDao = new FlightDAO();
 
@@ -49,12 +53,15 @@ public class FlightService {
 
 return fileName;
     }
-
-    private static Map<String, List<String>> convert(List<String> list) {
+    private static List<String> read(String filename) throws FileNotFoundException {
+        File file = new File(filename);
+        return new BufferedReader(new FileReader(file)).lines().collect(Collectors.toList());
+    }
+    private static Map<String, List<String>> convert(List<String>  list) {
         String fileName = "flight.txt";
         HashMap<String, List<String>> data = new HashMap<>();
         for (String line: list) {
-            String[] splitted = line.split(".");
+            String[] splitted = line.split(",");
             String[] splited2 = splitted[1].split(",");
 
             data.put(
@@ -62,6 +69,7 @@ return fileName;
                     Arrays.stream(splited2).map(s -> s.trim()).collect(Collectors.toList())
             );
         }
+        System.out.println(data);
         return data;
     }
 }
