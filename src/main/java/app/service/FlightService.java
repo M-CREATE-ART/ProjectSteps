@@ -1,94 +1,127 @@
 package app.service;
 
-import app.DAOFull.FlightDAO;
-import app.Util.FlightGenerated;
-import app.entity.Flight;
+import app.dao.FlightDao;
+import app.database.Airport;
+import app.entities.Flight;
+import app.util.Tools;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class FlightService {
+    FlightDao flightDao = new FlightDao();
 
-    public static void main(String[] args) throws FileNotFoundException {
-
-        convert();
-
+    public void addFlight(Airport destination, String Date, int seats) {
+        flightDao.add(new Flight(getAllFlights().size()+1, destination, Date, seats, seats));
     }
 
+    public List<Flight> getAllFlights() {
+        return flightDao.getAll();
+    }
 
-    FlightDAO flightDao = new FlightDAO();
+    public Flight getFlightsByID(int id) {
+        return flightDao.getByID(id);
+    }
 
-    public String generating() {
-        FlightGenerated flightsGenerated = new FlightGenerated();
-        String fileName = "flight.txt";
-        List<String> list = new ArrayList<>();
+    public void saveFlight() {
+        flightDao.save();
+    }
+
+    public boolean deleteFlight(Flight flight) {
+        return flightDao.delete(flight);
+    }
+
+    public void generateFlight() {
+        String fileName = "src/main/java/app/database/flights.txt";
+        List<String> lineList = new ArrayList<>();
+
         try {
-            BufferedReader br = Files.newBufferedReader(Paths.get(fileName));
-            list = br.lines().collect(Collectors.toList());
-            if (list.size() == 0) {
-                FileWriter writer = new FileWriter(fileName);
+            BufferedReader br = new BufferedReader(new FileReader(fileName));
+            lineList = br.lines().collect(Collectors.toList());
+            if (lineList.size() == 0) {
+                FileWriter fw = new FileWriter(fileName);
 
-                for (Flight str : flightsGenerated.flightGenerator(10)) {
-                    writer.write(str + System.lineSeparator());
+                for (Flight flight : Tools.flightGenerator(50)) {
+                    fw.write(flight + System.lineSeparator());
                 }
-                writer.close();
+                fw.close();
             }
+
         } catch (IOException ex) {
             System.out.printf(" %s File not found! \n", fileName);
 
             try {
                 BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
-                flightDao.getAll().addAll(FlightGenerated.flightGenerator(5));
-                for (Flight flight : flightDao.getAll()) {
-                    bw.write(flight.toString());
-                    bw.write("\n");
+                for (Flight flight : Tools.flightGenerator(50)) {
+                    bw.write(flight + System.lineSeparator());
                 }
                 bw.close();
             } catch (IOException ex1) {
-                System.out.println("Something wont wrong!");
+                System.out.println("Something went wrong!");
             }
         }
 
-        return fileName;
     }
 
-    public static List<String> read(String filename) throws FileNotFoundException {
-        File file = new File(filename);
-        return new BufferedReader(new FileReader(file)).lines().collect(Collectors.toList());
-    }
+    public String getCurrentDayFlights() {
+        ArrayList<Flight> currentDayFlights = new ArrayList<>();
+        StringBuilder currentDayFlightString = new StringBuilder();
 
-    public static List<String> convert() {
-        StringBuilder sb = new StringBuilder();
-        String str = "";
-        List<String> list = new ArrayList<String>();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\namaz\\IdeaProjects\\ProjectSteps\\flight.txt"));
-            while (str != null)
-            {
-                str = br.readLine();
-                sb.append(str);
-                sb.append(System.lineSeparator());
-                str = br.readLine();
-                if (str==null)
-                    break;
-                list.add(str);
-            }
-            System.out.println(Arrays.toString(list.toArray()));
-            br.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found!");
-        } catch (IOException e) {
-            System.out.println("Unable to read!");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd|HH:mm");
+        LocalDate currentDate = LocalDate.now().plusDays(1);
+
+        for (Flight flight : flightDao.getAll()) {
+            LocalDate flightDate = LocalDate.parse(flight.getDate(), formatter);
+
+            if (currentDate.getMonth() == flightDate.getMonth() &&
+                    currentDate.getDayOfMonth() >= flightDate.getDayOfMonth()
+            ) currentDayFlights.add(flight);
+
         }
 
-        return  list;
+//        currentDayFlights = flightDao.getAll().stream().map(fl -> {
+//            LocalDate flightDate = LocalDate.parse(fl.getDate(), formatter);
+//
+//            currentDate.getMonth() == flightDate.getMonth() && currentDate.getDayOfMonth() >= flightDate.getDayOfMonth();
+//        }).collect(Collectors.toList());
+
+        currentDayFlights.forEach(flight -> currentDayFlightString.append(flight.represent()));
+        return currentDayFlightString.toString();
     }
+
+    public void getfromDB() {
+        flightDao.getfromDB();
+    }
+
+    public String showFlightInfo(int ID) {
+        return getFlightsByID(ID).represent();
+    }
+
+    public String getFilteredFlights(String destination, String date, int passengers) {
+        ArrayList<Flight> filteredFlights = new ArrayList<>();
+        StringBuilder fliteredFlightString = new StringBuilder();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy/MM/dd|HH:mm");
+        LocalDate searchDate = LocalDate.parse(date, formatter);
+
+        flightDao.getAll().forEach(flight -> {
+
+            LocalDate flightDate = LocalDate.parse(flight.getDate(), formatter2);
+            if (flight.getDestination() == Airport.valueOf(destination.toUpperCase()) &&
+                    searchDate.getMonth() == flightDate.getMonth() &&
+                    searchDate.getDayOfMonth() == flightDate.getDayOfMonth() &&
+                    flight.getFreeSeats() >= passengers) {
+                filteredFlights.add(flight);
+            }
+        });
+        filteredFlights.forEach(sf -> fliteredFlightString.append(sf.represent()));
+        return fliteredFlightString.toString();
+    }
+
 
 }
-
 
