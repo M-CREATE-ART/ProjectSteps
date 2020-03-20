@@ -15,7 +15,7 @@ class FlightControllerTest {
     void setUp() {
         flightController = new FlightController();
 
-        Flight flightDemo = new Flight(1, Airport.SOFIA, "2020/03/21|21:15", 50, 0);
+        Flight flightDemo = new Flight(1, Airport.SOFIA, "2020/03/21|21:15", 50, 10);
         Flight flightDemo2 = new Flight(2, Airport.GANDJA, "2020/03/23|15:00", 50, 0);
         flightController.getAllFlights().add(flightDemo);
         flightController.getAllFlights().add(flightDemo2);
@@ -72,15 +72,22 @@ class FlightControllerTest {
         assertEquals(expected, actual);
     }
 
-    @Test
-    void getfromDB() {
-    }
 
     @Test
     void showFlightInfo() {
+        String expected = "Booking ID: 1 FROM 'KYIV (KBP)' TO: 'SOFIA (SOF)' Flight date: '2020/03/21|21:15' Total seats: '50' Free seats: '0'\n";
+        String actual = flightController.showFlightInfo(1);
+
+        assertEquals(expected, actual);
+
     }
 
     @Test
     void getFilteredFlights() {
+        String expected = "Booking ID: 1 FROM 'KYIV (KBP)' TO: 'SOFIA (SOF)' Flight date: '2020/03/21|21:15' Total seats: '50' Free seats: '10'\n";
+        String actual = flightController.getFilteredFlights("Sofia", "21/03/2020", 5);
+
+        assertEquals(expected, actual);
+
     }
 }
