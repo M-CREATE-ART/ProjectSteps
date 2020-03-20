@@ -7,19 +7,23 @@ import app.entity.Flight;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class FlightService {
+
     public static void main(String[] args) throws FileNotFoundException {
-        List<String> flight = read("flight.txt");
-        Map<String, List<String>> flightList = convert(flight);
+
+        convert();
 
     }
 
+
     FlightDAO flightDao = new FlightDAO();
 
-    public String generating()  {
+    public String generating() {
         FlightGenerated flightsGenerated = new FlightGenerated();
         String fileName = "flight.txt";
         List<String> list = new ArrayList<>();
@@ -39,39 +43,52 @@ public class FlightService {
 
             try {
                 BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
-                  flightDao.getAll().addAll(FlightGenerated.flightGenerator(5));
+                flightDao.getAll().addAll(FlightGenerated.flightGenerator(5));
                 for (Flight flight : flightDao.getAll()) {
                     bw.write(flight.toString());
                     bw.write("\n");
                 }
                 bw.close();
-            }
-            catch (IOException ex1){
+            } catch (IOException ex1) {
                 System.out.println("Something wont wrong!");
             }
         }
 
-return fileName;
+        return fileName;
     }
-    private static List<String> read(String filename) throws FileNotFoundException {
+
+    public static List<String> read(String filename) throws FileNotFoundException {
         File file = new File(filename);
         return new BufferedReader(new FileReader(file)).lines().collect(Collectors.toList());
     }
-    private static Map<String, List<String>> convert(List<String>  list) {
-        String fileName = "flight.txt";
-        HashMap<String, List<String>> data = new HashMap<>();
-        for (String line: list) {
-            String[] splitted = line.split(",");
-            String[] splited2 = splitted[1].split(",");
 
-            data.put(
-                    splitted[0].trim(),
-                    Arrays.stream(splited2).map(s -> s.trim()).collect(Collectors.toList())
-            );
+    public static List<String> convert() {
+        StringBuilder sb = new StringBuilder();
+        String strLine = "";
+        List<String> list = new ArrayList<String>();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\namaz\\IdeaProjects\\ProjectSteps\\flight.txt"));
+            while (strLine != null)
+            {
+                strLine = br.readLine();
+                sb.append(strLine);
+                sb.append(System.lineSeparator());
+                strLine = br.readLine();
+                if (strLine==null)
+                    break;
+                list.add(strLine);
+            }
+            System.out.println(Arrays.toString(list.toArray()));
+            br.close();
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found");
+        } catch (IOException e) {
+            System.err.println("Unable to read the file.");
         }
-        System.out.println(data);
-        return data;
+
+        return  list;
     }
+
 }
 
 

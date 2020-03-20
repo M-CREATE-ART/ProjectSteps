@@ -11,7 +11,7 @@ public class Controller {
     Console console;
 
     public static void main(String[] args) {
-        FlightService flightservice=new FlightService();
+        FlightService flightservice = new FlightService();
         System.out.println(flightservice.generating());
 
     }
@@ -25,12 +25,17 @@ public class Controller {
         service.getallFlights();
     }
 
-    public void search(String flightId) throws IOException {
-        service.getSearchingFlight(flightId);
+    public void search( String searchFligtID, String  searchFlightDestination, String  searchFlightSit ) throws IOException {
+        service.searchingFlight(searchFligtID, searchFlightDestination,  searchFlightSit);
     }
 
-    public void book() {
-        console.printLn("");
+
+    public void book(String flightDestination1, String flightId, String flightSit) {
+        service.bookingFlight(flightDestination1, flightId, flightSit);
+        // console.printLn(" ");
+
+
     }
+
 
 }
