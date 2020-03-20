@@ -10,6 +10,7 @@ public class Controller {
     Service service;
     Console console;
 
+
     public static void main(String[] args) {
         FlightService flightservice = new FlightService();
         System.out.println(flightservice.generating());
@@ -32,7 +33,7 @@ public class Controller {
 
     public void book(String flightDestination1, String flightId, String flightSit) {
         service.bookingFlight(flightDestination1, flightId, flightSit);
-        // console.printLn(" ");
+        console.printLn(" ");
 
 
     }

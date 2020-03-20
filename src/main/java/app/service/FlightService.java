@@ -64,26 +64,26 @@ public class FlightService {
 
     public static List<String> convert() {
         StringBuilder sb = new StringBuilder();
-        String strLine = "";
+        String str = "";
         List<String> list = new ArrayList<String>();
         try {
             BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\namaz\\IdeaProjects\\ProjectSteps\\flight.txt"));
-            while (strLine != null)
+            while (str != null)
             {
-                strLine = br.readLine();
-                sb.append(strLine);
+                str = br.readLine();
+                sb.append(str);
                 sb.append(System.lineSeparator());
-                strLine = br.readLine();
-                if (strLine==null)
+                str = br.readLine();
+                if (str==null)
                     break;
-                list.add(strLine);
+                list.add(str);
             }
             System.out.println(Arrays.toString(list.toArray()));
             br.close();
         } catch (FileNotFoundException e) {
-            System.err.println("File not found");
+            System.out.println("File not found!");
         } catch (IOException e) {
-            System.err.println("Unable to read the file.");
+            System.out.println("Unable to read!");
         }
 
         return  list;

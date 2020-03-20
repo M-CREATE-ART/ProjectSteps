@@ -11,27 +11,18 @@ public class Main {
     public static void main(String[] args) throws IOException {
         ConsoleMain console = new ConsoleMain();
         BookingDAO daoBooking = new BookingDAO();
-
         Service service = new Service(daoBooking);
-    //    FlightService fs=new FlightService();
-     //   fs.generating();
         Controller controller = new Controller(console, service);
 
         boolean w_loop = true;
         while (w_loop) {
-
-
-            System.out.println("Select 1: 1 Show:  2 Search: 3 Book: 4 Exit ");
-
             System.out.println("Please enter your choice: 1 Show:  2 Search: 3 Book: 4 Exit ");
-
             String input = console.readLn();
             switch (input) {
                 case "1":
                     controller.show();
                     break;
                 case "2":
-
                     System.out.println("Insert flightId, flightDestination, flightSit");
                     String searchFligtID = console.readLn();
                     String searchFlightDestination = console.readLn();

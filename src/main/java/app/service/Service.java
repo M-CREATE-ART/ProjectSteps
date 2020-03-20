@@ -8,6 +8,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class Service {
@@ -39,10 +42,20 @@ public class Service {
     }
 
     public void searchingFlight( String searchFligtID, String  searchFlightDestination, String  searchFlightSit) throws IOException{
+        List<String> listSearch = new ArrayList<String>();
+        listSearch=flightSearch.convert();
+        List<String> listFound = new ArrayList<String>();
+for(String str:listSearch){
+    if (listSearch.containsAll(Arrays.asList(searchFligtID, searchFlightDestination, searchFlightSit))) {
+     listFound.add(str);
+    }
 
+}
+        for(String str1:listFound){
+            System.out.println(str1);
+            }
 
-
-
+        System.out.println();
 
     }
 
