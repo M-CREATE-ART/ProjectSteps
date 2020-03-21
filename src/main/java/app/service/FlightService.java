@@ -46,7 +46,7 @@ public class FlightService {
             if (lineList.size() == 0) {
                 FileWriter fw = new FileWriter(fileName);
 
-                for (Flight flight : Tools.generateFlight(50)) {
+                for (Flight flight : Tools.flightGenerator(50)) {
                     fw.write(flight + System.lineSeparator());
                 }
                 fw.close();
@@ -57,7 +57,7 @@ public class FlightService {
 
             try {
                 BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
-                for (Flight flight : Tools.generateFlight(50)) {
+                for (Flight flight : Tools.flightGenerator(50)) {
                     bw.write(flight + System.lineSeparator());
                 }
                 bw.close();

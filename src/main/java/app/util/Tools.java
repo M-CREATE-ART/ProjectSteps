@@ -6,37 +6,36 @@ import app.entities.Flight;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.EnumSet;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Tools {
 
-  public static ArrayList<Flight> generateFlight(int count) {
-    ArrayList<Flight> generatedFlight = new ArrayList<>();
-    Random rndm = new Random();
-    ArrayList<Airport> randomDestinations = new ArrayList<>();
-    EnumSet.allOf(Airport.class).forEach(air -> randomDestinations.add(air));
+  public static List<Flight> flightGenerator(int count) {
+    Random random = new Random();
+    ArrayList<Flight> generatedFlights = new ArrayList<>();
 
-    int seats = 50;
+    List<Airport> destinations = Arrays.asList(Airport.values());
+    int countSeats = 10;
 
     for (int i = 0; i < count; i++) {
-      int randomDestIndex = rndm.nextInt(randomDestinations.size() - 1);
-      int randomDate = rndm.nextInt(15);
-      int randomMinute = rndm.nextInt(150);
-      String randomDest = randomDestinations.get(randomDestIndex).name();
+
+      int randomDestIdx = random.nextInt(destinations.size());
+      Airport randomDestination = destinations.get(randomDestIdx);
+
+      int randomDate = random.nextInt(10);
+      int randomTime = random.nextInt(15);
 
       DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd|HH:mm");
       LocalDateTime localDateTime = LocalDateTime.now();
-      LocalDateTime flightDate = localDateTime
-              .plusDays(randomDate)
-              .plusHours(randomDate)
-              .plusMinutes(randomMinute);
+      LocalDateTime flightDateTime = localDateTime.plusDays(randomDate).plusHours(randomTime).plusMinutes(randomTime);
 
-      String formattedFlightDate = flightDate.format(dateTimeFormatter);
+      String formattedFlightDate = flightDateTime.format(dateTimeFormatter);
 
-      generatedFlight.add(new Flight(i + 1, Airport.valueOf(randomDest), formattedFlightDate, seats, seats));
+      generatedFlights.add(new Flight(i + 1, randomDestination, formattedFlightDate, countSeats, countSeats));
     }
-    return generatedFlight;
-  }
 
+    return generatedFlights;
+  }
 }
