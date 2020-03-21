@@ -1,20 +1,20 @@
 package app.controller;
 
 import app.entities.Booking;
+import app.entities.Flight;
 import app.entities.Person;
 import app.service.BookingService;
 
-import java.util.Collection;
 import java.util.List;
 
 public class BookingController {
     BookingService bookingService = new BookingService();
 
-    public String addBooking(int ID, List<Person> passengers) {
-        return bookingService.addBooking(ID, passengers);
+    public String addBooking(Flight flight, List<Person> passengers) {
+        return bookingService.addBooking(flight, passengers);
     }
 
-    public Collection<Booking> getAllBooking() {
+    public List<Booking> getAllBooking() {
         return bookingService.getAllBooking();
     }
 
@@ -26,8 +26,8 @@ public class BookingController {
         bookingService.saveBooking();
     }
 
-    public boolean deleteBooking(Booking booking) {
-        return bookingService.deleteBooking(booking);
+    public boolean deleteBooking(int bookingId) {
+        return bookingService.deleteBooking(bookingId);
     }
 
     public String cancelBooking(int ID) {
@@ -36,5 +36,9 @@ public class BookingController {
 
     public String getMyFlights(String name, String surname) {
         return bookingService.getMyFlights(name, surname);
+    }
+
+    public void getfromDB() {
+        bookingService.getfromDB();
     }
 }

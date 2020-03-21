@@ -7,6 +7,6 @@ public interface dao<M> {
     Collection<M> getAll();
     M getByID(int M);
     void save();
-    boolean delete(M m);
+    boolean delete(int Id);
     void getfromDB();
 }

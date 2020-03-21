@@ -63,10 +63,11 @@ public class FlightDao implements dao<Flight> {
     }
 
 
+
     @Override
-    public boolean delete(Flight flight) {
-        if (flights.contains(flight)) {
-            flights.remove(flight);
+    public boolean delete(int flightId) {
+        if (flights.contains(getByID(flightId))) {
+            flights.remove(getByID(flightId));
             return true;
         } else{
             return false;

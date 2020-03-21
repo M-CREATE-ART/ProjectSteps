@@ -25,8 +25,8 @@ public class FlightController {
         flightService.saveFlight();
     }
 
-    public boolean deleteFlight(Flight flight) {
-        return flightService.deleteFlight(flight);
+    public boolean deleteFlight(int flightId) {
+        return flightService.deleteFlight(flightId);
     }
 
     public void generateFlight() {

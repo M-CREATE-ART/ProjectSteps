@@ -1,6 +1,5 @@
-package controller;
+package app.controller;
 
-import app.controller.FlightController;
 import app.database.Airport;
 import app.entities.Flight;
 import org.junit.jupiter.api.BeforeEach;
@@ -54,10 +53,10 @@ class FlightControllerTest {
 
     @Test
     void deleteFlight() {
-        Flight flight = new Flight(5, Airport.ANKARA, "25/03/2020|23:07", 5, 5);
+        Flight flight = new Flight(3, Airport.ANKARA, "25/03/2020|23:07", 5, 5);
         flightController.getAllFlights().add(flight);
         boolean expected = true;
-        boolean actual = flightController.deleteFlight(flight);
+        boolean actual = flightController.deleteFlight(flight.getID());
 
         assertEquals(expected, actual);
 
@@ -66,28 +65,28 @@ class FlightControllerTest {
 
     @Test
     void getCurrentDayFlights() {
-        String expected = "Booking ID: 1 FROM 'KYIV (KBP)' TO: 'SOFIA (SOF)' Flight date: '2020/03/21|21:15' Total seats: '50' Free seats: '0'\n";
+        String expected = "Flight ID: 1 FROM 'KYIV (KBP)' TO: 'SOFIA (SOF)' Flight date: '2020/03/21|21:15' Total seats: '50' Free seats: '10'\n";
         String actual = flightController.getCurrentDayFlights();
 
-        assertEquals(expected, actual);
-    }
-
-
-    @Test
-    void showFlightInfo() {
-        String expected = "Booking ID: 1 FROM 'KYIV (KBP)' TO: 'SOFIA (SOF)' Flight date: '2020/03/21|21:15' Total seats: '50' Free seats: '0'\n";
-        String actual = flightController.showFlightInfo(1);
-
-        assertEquals(expected, actual);
-
-    }
-
-    @Test
-    void getFilteredFlights() {
-        String expected = "Booking ID: 1 FROM 'KYIV (KBP)' TO: 'SOFIA (SOF)' Flight date: '2020/03/21|21:15' Total seats: '50' Free seats: '10'\n";
-        String actual = flightController.getFilteredFlights("Sofia", "21/03/2020", 5);
-
-        assertEquals(expected, actual);
-
-    }
+    assertEquals(expected, actual);
 }
+
+
+@Test
+    void showFlightInfo() {
+            String expected = "Flight ID: 1 FROM 'KYIV (KBP)' TO: 'SOFIA (SOF)' Flight date: '2020/03/21|21:15' Total seats: '50' Free seats: '10'\n";
+            String actual = flightController.showFlightInfo(1);
+
+            assertEquals(expected, actual);
+
+            }
+
+@Test
+    void getFilteredFlights() {
+            String expected = "Flight ID: 1 FROM 'KYIV (KBP)' TO: 'SOFIA (SOF)' Flight date: '2020/03/21|21:15' Total seats: '50' Free seats: '10'\n";
+            String actual = flightController.getFilteredFlights("Sofia", "21/03/2020", 5);
+
+            assertEquals(expected, actual);
+
+            }
+            }

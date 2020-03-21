@@ -6,19 +6,17 @@ import app.entities.Booking;
 import app.entities.Flight;
 import app.entities.Person;
 
-import java.util.Collection;
 import java.util.List;
 
 public class BookingService {
     BookingDao bookingDao = new BookingDao();
     FlightDao flightDao = new FlightDao();
 
-    public String addBooking(int ID, List<Person> passengers) {
+    public String addBooking(Flight flight, List<Person> passengers) {
         try{
-            Flight flight = flightDao.getByID(ID);
             flight.setFreeSeats(flight.getFreeSeats() - passengers.size());
-            Booking booking = new Booking(getAllBooking().size(), flight, passengers);
-            bookingDao.add(booking);
+            Booking booking = new Booking(getAllBooking().size()+1, flight, passengers);
+            bookingDao.getAll().add(booking);
             return "Your booking has been completed successfully. See you on flight day <3! \n";
         }
         catch (Exception e){
@@ -27,7 +25,7 @@ public class BookingService {
 
     }
 
-    public Collection<Booking> getAllBooking() {
+    public List<Booking> getAllBooking() {
         return bookingDao.getAll();
     }
 
@@ -39,19 +37,13 @@ public class BookingService {
         bookingDao.save();
     }
 
-    public boolean deleteBooking(Booking booking) {
-        return bookingDao.delete(booking);
+    public boolean deleteBooking(int bookingId) {
+        return bookingDao.delete(bookingId);
     }
 
     public String cancelBooking(int ID) {
         try {
-            int flightID = bookingDao.getByID(ID).getFlight().getID();
-            int currentFreeSeats = bookingDao.getByID(ID).getFlight().getFreeSeats();
-            int currentReservedSeats = bookingDao.getByID(ID).getPassengers().size();
-
-            flightDao.getByID(flightID).setFreeSeats(currentFreeSeats + currentReservedSeats);
-            deleteBooking(bookingDao.getByID(ID));
-
+            bookingDao.delete(ID);
             return "Your booking cancelled successfully!";
         } catch (Exception e) {
             return "You entered invalid input!";
@@ -61,11 +53,19 @@ public class BookingService {
     public String getMyFlights(String name, String surname) {
         StringBuilder myFlights = new StringBuilder();
         Person person = new Person(name, surname);
-        getAllBooking().stream()
-                .filter(bk -> bk.getPassengers().contains(person))
-                .forEach(mf-> myFlights.append(mf));
+
+        for (Booking booking: getAllBooking()) {
+            for (Person passenger : booking.getPassengers()) {
+                if (passenger.getSurname().equals(surname) && passenger.getName().equals(name)) myFlights.append(booking.represent());
+            }
+        }
 
         return myFlights.toString();
     }
+
+    public void getfromDB() {
+        bookingDao.getfromDB();
+    }
+
 
 }

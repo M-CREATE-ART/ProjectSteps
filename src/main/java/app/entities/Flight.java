@@ -43,7 +43,7 @@ public class Flight {
     }
 
     public String represent() {
-        return String.format("Booking ID: %d FROM 'KYIV (KBP)' TO: '%s (%s)' Flight date: '%s' Total seats: '%d' Free seats: '%d'\n",
+        return String.format("Flight ID: %d FROM 'KYIV (KBP)' TO: '%s (%s)' Flight date: '%s' Total seats: '%d' Free seats: '%d'\n",
                 ID, destination.name(), destination.getCode(), date, seats, freeSeats);
     }
 
