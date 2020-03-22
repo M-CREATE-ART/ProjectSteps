@@ -65,7 +65,8 @@ class FlightControllerTest {
 
     @Test
     void getCurrentDayFlights() {
-        String expected = "Flight ID: 1 FROM 'KYIV (KBP)' TO: 'SOFIA (SOF)' Flight date: '2020/03/21|21:15' Total seats: '50' Free seats: '10'\n";
+        String expected = "Flight ID: 1 FROM 'KYIV (KBP)' TO: 'SOFIA (SOF)' Flight date: '2020/03/21|21:15' Total seats: '50' Free seats: '10'\n" +
+                "Flight ID: 2 FROM 'KYIV (KBP)' TO: 'GANDJA (KVD)' Flight date: '2020/03/23|15:00' Total seats: '50' Free seats: '0'\n";
         String actual = flightController.getCurrentDayFlights();
 
     assertEquals(expected, actual);

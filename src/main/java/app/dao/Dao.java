@@ -2,7 +2,7 @@ package app.dao;
 
 import java.util.Collection;
 
-public interface dao<M> {
+public interface Dao<M> {
     void add(M m);
     Collection<M> getAll();
     M getByID(int M);

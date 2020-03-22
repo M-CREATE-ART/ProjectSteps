@@ -1,7 +1,6 @@
 package app.service;
 
 import app.dao.BookingDao;
-import app.dao.FlightDao;
 import app.entities.Booking;
 import app.entities.Flight;
 import app.entities.Person;
@@ -10,7 +9,6 @@ import java.util.List;
 
 public class BookingService {
     BookingDao bookingDao = new BookingDao();
-    FlightDao flightDao = new FlightDao();
 
     public String addBooking(Flight flight, List<Person> passengers) {
         try{
